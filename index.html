@@ -16,7 +16,7 @@
 
         <div class="intro-card">
 
-            <div class="main-heart">💙</div>
+            <div class="main-heart">❤️</div>
 
             <p class="small-title">A LITTLE SURPRISE FOR YOU</p>
 
@@ -36,7 +36,7 @@
             </button>
 
             <p class="bottom-text">
-                Made with 💙 and beautiful memories
+                Made with ❤️ and beautiful memories
             </p>
 
         </div>
@@ -47,13 +47,48 @@
         <nav>
 
             <div class="logo">
-                💙 Forever Friends
+                ❤️ Forever Friends
             </div>
 
-            <button id="musicButton">
-                🎵 Music
-            </button>
+            <div class="music-box">
 
+                <div class="music-title">
+                    🎵 Choose Your Music
+                </div>
+
+                <p class="music-subtitle">
+                    Choose any song from your phone or computer ❤️
+                </p>
+
+                <label for="musicFile">
+                    🎵 Choose Music
+                </label>
+
+                <input type="file" id="musicFile" accept="audio/*">
+
+                <div class="music-controls">
+
+                    <button id="musicButton" type="button">
+                        ▶️ Play Music
+                    </button>
+
+                    <button id="pauseMusic" type="button">
+                        ⏸️ Pause
+                    </button>
+
+                    <button id="stopMusic" type="button">
+                        ⏹️ Stop
+                    </button>
+
+                </div>
+
+                <div id="musicName">
+                    No song selected 🎵
+                </div>
+
+                <audio id="music"></audio>
+
+            </div>
         </nav>
         <section class="hero">
 
@@ -68,7 +103,7 @@
                     <span id="friendName1">
                         Friend
                     </span>
-                    ! 💙
+                    ! ❤️
                 </h2>
 
                 <p>
@@ -83,7 +118,7 @@
             </div>
 
             <div class="hero-heart">
-                💙
+                ❤️
             </div>
 
         </section>
@@ -129,7 +164,7 @@
                     <span id="friendName3">
                         Friend
                     </span>
-                    ! 💙
+                    ! ❤️
 
                 </p>
 
@@ -207,7 +242,7 @@
 
                     <div class="photo-placeholder">
 
-                        💙
+                        ❤️
 
                         <span>
                             Add Photo
@@ -276,7 +311,7 @@
         <footer>
 
             <div class="footer-heart">
-                💙
+                ❤️
             </div>
 
             <h2>
@@ -297,7 +332,7 @@
     </section>
 
 
-    <!-- MUSIC -->
+
 
     <audio id="music" loop>
 
@@ -306,7 +341,8 @@
     </audio>
 
 
-    <script src="friendship.js"></script>
+
+    <script type="module" src="friendship.js"></script>
 
 </body>
 

@@ -1,6 +1,6 @@
 /* =========================================
    FRIENDSHIP DAY PREMIUM WEBSITE
-   Updated version with saved photos
+   FINAL VERSION
 ========================================= */
 
 
@@ -24,39 +24,44 @@ const messageButton =
 const message =
     document.getElementById("message");
 
-const musicButton =
-    document.getElementById("musicButton");
-
-const music =
-    document.getElementById("music");
-
 
 /* ================= START SURPRISE ================= */
 
-startButton.addEventListener(
-    "click",
-    startSurprise
-);
+if (startButton) {
+
+    startButton.addEventListener(
+        "click",
+        startSurprise
+    );
+
+}
 
 
-friendNameInput.addEventListener(
-    "keydown",
-    function(event) {
+if (friendNameInput) {
 
-        if (event.key === "Enter") {
+    friendNameInput.addEventListener(
+        "keydown",
+        function (event) {
 
-            startSurprise();
+            if (event.key === "Enter") {
+
+                startSurprise();
+
+            }
 
         }
+    );
 
-    }
-);
+}
 
 
 function startSurprise() {
 
-    let name =
+    if (!friendNameInput) return;
+
+    const name =
         friendNameInput.value.trim();
+
 
     if (name === "") {
 
@@ -71,33 +76,28 @@ function startSurprise() {
     }
 
 
-    /*
-       Put name everywhere
-    */
+    /* Put name everywhere */
 
-    document.getElementById(
-        "friendName1"
-    ).textContent = name;
+    const name1 =
+        document.getElementById("friendName1");
 
+    const name2 =
+        document.getElementById("friendName2");
 
-    document.getElementById(
-        "friendName2"
-    ).textContent = name;
+    const name3 =
+        document.getElementById("friendName3");
 
-
-    document.getElementById(
-        "friendName3"
-    ).textContent = name;
+    const name4 =
+        document.getElementById("friendName4");
 
 
-    document.getElementById(
-        "friendName4"
-    ).textContent = name;
+    if (name1) name1.textContent = name;
+    if (name2) name2.textContent = name;
+    if (name3) name3.textContent = name;
+    if (name4) name4.textContent = name;
 
 
-    /*
-       Save friend's name
-    */
+    /* Save friend's name */
 
     localStorage.setItem(
         "friendshipFriendName",
@@ -105,37 +105,35 @@ function startSurprise() {
     );
 
 
-    /*
-       Hide intro
-    */
+    /* Hide intro */
 
-    intro.classList.add("hidden");
+    if (intro) {
 
+        intro.classList.add("hidden");
 
-    /*
-       Show surprise
-    */
-
-    surprise.classList.remove("hidden");
+    }
 
 
-    /*
-       Create hearts
-    */
+    /* Show surprise */
+
+    if (surprise) {
+
+        surprise.classList.remove("hidden");
+
+    }
+
+
+    /* Hearts */
 
     createHearts(40);
 
 
-    /*
-       Load saved photos
-    */
+    /* Load saved photos */
 
     loadSavedPhotos();
 
 
-    /*
-       Scroll top
-    */
+    /* Scroll */
 
     window.scrollTo({
 
@@ -148,11 +146,13 @@ function startSurprise() {
 }
 
 
-/* ================= LOAD SAVED NAME ================= */
+/* ================= LOAD SAVED DATA ================= */
 
 window.addEventListener(
     "DOMContentLoaded",
-    function() {
+    function () {
+
+        /* Saved name */
 
         const savedName =
             localStorage.getItem(
@@ -160,7 +160,10 @@ window.addEventListener(
             );
 
 
-        if (savedName) {
+        if (
+            savedName &&
+            friendNameInput
+        ) {
 
             friendNameInput.value =
                 savedName;
@@ -168,9 +171,7 @@ window.addEventListener(
         }
 
 
-        /*
-           Load saved photos
-        */
+        /* Saved photos */
 
         loadSavedPhotos();
 
@@ -180,39 +181,51 @@ window.addEventListener(
 
 /* ================= MESSAGE ================= */
 
-messageButton.addEventListener(
-    "click",
-    function() {
+if (messageButton) {
 
-        message.classList.remove(
-            "hidden"
-        );
+    messageButton.addEventListener(
+        "click",
+        function () {
+
+            if (message) {
+
+                message.classList.remove(
+                    "hidden"
+                );
+
+            }
 
 
-        messageButton.innerHTML =
-            "❤️ Message Opened";
+            messageButton.innerHTML =
+                "❤️ Message Opened";
 
 
-        createHearts(25);
+            createHearts(25);
 
 
-        setTimeout(
-            function() {
+            if (message) {
 
-                message.scrollIntoView({
+                setTimeout(
+                    function () {
 
-                    behavior: "smooth",
+                        message.scrollIntoView({
 
-                    block: "center"
+                            behavior: "smooth",
 
-                });
+                            block: "center"
 
-            },
-            200
-        );
+                        });
 
-    }
-);
+                    },
+                    200
+                );
+
+            }
+
+        }
+    );
+
+}
 
 
 /* ================= HEARTS ================= */
@@ -228,20 +241,24 @@ function createHeart() {
 
 
     const hearts = [
+
         "❤️",
         "🤍",
         "💜",
+        "💙",
+        "💗",
         "✨",
         "🫶"
+
     ];
 
 
     heart.innerHTML =
         hearts[
-            Math.floor(
-                Math.random() *
-                hearts.length
-            )
+        Math.floor(
+            Math.random() *
+            hearts.length
+        )
         ];
 
 
@@ -250,13 +267,11 @@ function createHeart() {
 
 
     heart.style.fontSize =
-        (15 + Math.random() * 25)
-        + "px";
+        (15 + Math.random() * 25) + "px";
 
 
     heart.style.animationDuration =
-        (5 + Math.random() * 5)
-        + "s";
+        (5 + Math.random() * 5) + "s";
 
 
     document.body.appendChild(
@@ -265,7 +280,7 @@ function createHeart() {
 
 
     setTimeout(
-        function() {
+        function () {
 
             heart.remove();
 
@@ -276,7 +291,7 @@ function createHeart() {
 }
 
 
-/* ================= CREATE MANY HEARTS ================= */
+/* ================= MANY HEARTS ================= */
 
 function createHearts(number) {
 
@@ -296,9 +311,7 @@ function createHearts(number) {
 }
 
 
-/*
-   Continuous hearts
-*/
+/* Continuous hearts */
 
 setInterval(
     createHeart,
@@ -308,7 +321,7 @@ setInterval(
 
 /* =====================================================
    PHOTO SYSTEM
-   Photos are saved in browser Local Storage
+   Photos saved in Local Storage
 ===================================================== */
 
 
@@ -323,11 +336,11 @@ const photoInputs =
 /* ================= PHOTO UPLOAD ================= */
 
 photoInputs.forEach(
-    function(input, index) {
+    function (input, index) {
 
         input.addEventListener(
             "change",
-            function(event) {
+            function (event) {
 
                 const file =
                     event.target.files[0];
@@ -340,9 +353,7 @@ photoInputs.forEach(
                 }
 
 
-                /*
-                   Check image
-                */
+                /* Check image */
 
                 if (
                     !file.type.startsWith(
@@ -359,10 +370,7 @@ photoInputs.forEach(
                 }
 
 
-                /*
-                   Maximum file size
-                   5 MB
-                */
+                /* Maximum 5 MB */
 
                 if (
                     file.size >
@@ -384,6 +392,9 @@ photoInputs.forEach(
                     );
 
 
+                if (!card) return;
+
+
                 const image =
                     card.querySelector(
                         ".photo"
@@ -396,24 +407,21 @@ photoInputs.forEach(
                     );
 
 
-                /*
-                   Read image
-                */
+                if (!image) return;
+
 
                 const reader =
                     new FileReader();
 
 
                 reader.onload =
-                    function(e) {
+                    function (e) {
 
                         const imageData =
                             e.target.result;
 
 
-                        /*
-                           Show image
-                        */
+                        /* Show image */
 
                         image.src =
                             imageData;
@@ -424,13 +432,15 @@ photoInputs.forEach(
                         );
 
 
-                        placeholder.style.display =
-                            "none";
+                        if (placeholder) {
+
+                            placeholder.style.display =
+                                "none";
+
+                        }
 
 
-                        /*
-                           SAVE PHOTO
-                        */
+                        /* Save photo */
 
                         savePhoto(
                             index,
@@ -438,9 +448,7 @@ photoInputs.forEach(
                         );
 
 
-                        /*
-                           Success message
-                        */
+                        /* Message */
 
                         showPhotoMessage();
 
@@ -495,8 +503,14 @@ function savePhoto(
 
 function loadSavedPhotos() {
 
-    photoInputs.forEach(
-        function(input, index) {
+    const inputs =
+        document.querySelectorAll(
+            ".photo-input"
+        );
+
+
+    inputs.forEach(
+        function (input, index) {
 
             const savedPhoto =
                 localStorage.getItem(
@@ -517,6 +531,9 @@ function loadSavedPhotos() {
                 );
 
 
+            if (!card) return;
+
+
             const image =
                 card.querySelector(
                     ".photo"
@@ -529,9 +546,8 @@ function loadSavedPhotos() {
                 );
 
 
-            /*
-               Restore photo
-            */
+            if (!image) return;
+
 
             image.src =
                 savedPhoto;
@@ -542,8 +558,12 @@ function loadSavedPhotos() {
             );
 
 
-            placeholder.style.display =
-                "none";
+            if (placeholder) {
+
+                placeholder.style.display =
+                    "none";
+
+            }
 
         }
     );
@@ -551,7 +571,7 @@ function loadSavedPhotos() {
 }
 
 
-/* ================= PHOTO MESSAGE ================= */
+/* ================= PHOTO SAVED MESSAGE ================= */
 
 function showPhotoMessage() {
 
@@ -560,10 +580,6 @@ function showPhotoMessage() {
             "photoSavedMessage"
         );
 
-
-    /*
-       Create message if it doesn't exist
-    */
 
     if (!messageBox) {
 
@@ -647,7 +663,7 @@ function showPhotoMessage() {
 
     window.photoMessageTimer =
         setTimeout(
-            function() {
+            function () {
 
                 messageBox.style.display =
                     "none";
@@ -659,56 +675,247 @@ function showPhotoMessage() {
 }
 
 
-/* ================= MUSIC ================= */
+/* =====================================================
+   CUSTOM MUSIC SYSTEM
+===================================================== */
 
-let musicPlaying =
-    false;
+
+/* Music elements */
+
+const musicFile =
+    document.getElementById(
+        "musicFile"
+    );
+
+const music =
+    document.getElementById(
+        "music"
+    );
+
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+const pauseMusic =
+    document.getElementById(
+        "pauseMusic"
+    );
+
+const stopMusic =
+    document.getElementById(
+        "stopMusic"
+    );
+
+const musicName =
+    document.getElementById(
+        "musicName"
+    );
 
 
-musicButton.addEventListener(
-    "click",
-    function() {
+let selectedMusicURL = null;
 
-        if (!musicPlaying) {
+
+/* ================= CHOOSE MUSIC ================= */
+
+if (musicFile) {
+
+    musicFile.addEventListener(
+        "change",
+        function (event) {
+
+            const file =
+                event.target.files[0];
+
+
+            if (!file) {
+
+                return;
+
+            }
+
+
+            if (
+                !file.type.startsWith(
+                    "audio/"
+                )
+            ) {
+
+                alert(
+                    "Please select an audio file 🎵"
+                );
+
+                return;
+
+            }
+
+
+            /* Remove old URL */
+
+            if (selectedMusicURL) {
+
+                URL.revokeObjectURL(
+                    selectedMusicURL
+                );
+
+            }
+
+
+            /* Create audio URL */
+
+            selectedMusicURL =
+                URL.createObjectURL(
+                    file
+                );
+
+
+            if (music) {
+
+                music.src =
+                    selectedMusicURL;
+
+                music.load();
+
+            }
+
+
+            /* Song name */
+
+            if (musicName) {
+
+                musicName.textContent =
+                    "🎵 " + file.name;
+
+            }
+
+
+            createHearts(10);
+
+        }
+    );
+
+}
+
+
+/* ================= PLAY ================= */
+
+if (musicButton) {
+
+    musicButton.addEventListener(
+        "click",
+        function () {
+
+            if (!music || !music.src) {
+
+                alert(
+                    "Pehle koi song select karo 🎵"
+                );
+
+                return;
+
+            }
+
 
             music.play()
                 .then(
-                    function() {
-
-                        musicPlaying =
-                            true;
-
+                    function () {
 
                         musicButton.innerHTML =
-                            "🔊 Music ON";
+                            "🔊 Music Playing";
 
                     }
                 )
                 .catch(
-                    function() {
+                    function (error) {
 
-                        alert(
-                            "music.mp3 file same folder me rakho 🎵"
+                        console.log(
+                            "Music error:",
+                            error
                         );
 
                     }
                 );
 
         }
+    );
 
-        else {
+}
+
+
+/* ================= PAUSE ================= */
+
+if (pauseMusic) {
+
+    pauseMusic.addEventListener(
+        "click",
+        function () {
+
+            if (!music) return;
+
 
             music.pause();
 
 
-            musicPlaying =
-                false;
+            if (musicButton) {
 
+                musicButton.innerHTML =
+                    "▶️ Play Music";
 
-            musicButton.innerHTML =
-                "🎵 Music";
+            }
 
         }
+    );
 
-    }
-);
+}
+
+
+/* ================= STOP ================= */
+
+if (stopMusic) {
+
+    stopMusic.addEventListener(
+        "click",
+        function () {
+
+            if (!music) return;
+
+
+            music.pause();
+
+
+            music.currentTime =
+                0;
+
+
+            if (musicButton) {
+
+                musicButton.innerHTML =
+                    "▶️ Play Music";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ================= MUSIC ENDED ================= */
+
+if (music) {
+
+    music.addEventListener(
+        "ended",
+        function () {
+
+            if (musicButton) {
+
+                musicButton.innerHTML =
+                    "▶️ Play Music";
+
+            }
+
+        }
+    );
+
+}

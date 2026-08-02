@@ -9,27 +9,19 @@ html {
 }
 
 body {
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 
     background:
         radial-gradient(circle at top left,
             #172554,
             transparent 35%),
-
         radial-gradient(circle at bottom right,
             #3b0764,
             transparent 35%),
-
         #050816;
 
     color: white;
-
     min-height: 100vh;
-
     overflow-x: hidden;
 }
 
@@ -37,48 +29,45 @@ body {
     display: none !important;
 }
 
+
+/* =========================================
+   COMMON
+========================================= */
+
 .small-title {
-
     color: #93c5fd;
-
     font-size: 12px;
-
     font-weight: bold;
-
     letter-spacing: 3px;
-
     margin-bottom: 15px;
 }
 
-.intro {
 
+/* =========================================
+   INTRO
+========================================= */
+
+.intro {
     min-height: 100vh;
 
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 
     padding: 20px;
 }
 
-
 .intro-card {
-
     width: 100%;
-
     max-width: 650px;
 
     padding: 50px 35px;
 
     text-align: center;
 
-    background:
-        rgba(15, 23, 42, 0.75);
+    background: rgba(15, 23, 42, 0.75);
 
-    border:
-        1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 
     border-radius: 30px;
 
@@ -87,24 +76,18 @@ body {
     box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.5);
 
-    animation:
-        fadeUp 1s ease;
+    animation: fadeUp 1s ease;
 }
 
-
 .main-heart {
-
     font-size: 75px;
-
     margin-bottom: 20px;
 
     animation:
         floating 3s ease-in-out infinite;
 }
 
-
 .intro h1 {
-
     font-size:
         clamp(40px, 8vw, 70px);
 
@@ -118,13 +101,10 @@ body {
             #c4b5fd);
 
     -webkit-background-clip: text;
-
     color: transparent;
 }
 
-
 .description {
-
     color: #cbd5e1;
 
     line-height: 1.8;
@@ -132,9 +112,7 @@ body {
     margin-bottom: 30px;
 }
 
-
 #friendName {
-
     width: 100%;
 
     padding: 16px;
@@ -156,15 +134,11 @@ body {
     margin-bottom: 12px;
 }
 
-
 #friendName::placeholder {
-
     color: #94a3b8;
 }
 
-
 #startButton {
-
     width: 100%;
 
     padding: 16px;
@@ -189,19 +163,18 @@ body {
     transition: 0.3s;
 }
 
-
 #startButton:hover {
-
     transform:
         translateY(-3px);
 
     box-shadow:
-        0 15px 30px rgba(59, 130, 246, 0.3);
+        0 15px 30px rgba(59,
+            130,
+            246,
+            0.3);
 }
 
-
 .bottom-text {
-
     color: #64748b;
 
     font-size: 12px;
@@ -209,8 +182,12 @@ body {
     margin-top: 20px;
 }
 
-.surprise {
 
+/* =========================================
+   MAIN
+========================================= */
+
+.surprise {
     max-width: 1100px;
 
     margin: auto;
@@ -218,54 +195,213 @@ body {
     padding: 20px;
 }
 
-nav {
 
+/* =========================================
+   NAVBAR
+========================================= */
+
+nav {
     display: flex;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     align-items: center;
 
-    padding: 15px 0 30px;
+    padding: 15px 0 22px;
+
+    gap: 15px;
 }
 
-
 .logo {
-
     font-weight: bold;
-
     font-size: 17px;
 }
 
 
-#musicButton {
+/* =========================================
+   🎵 SMALL PREMIUM MUSIC BOX
+========================================= */
+
+.music-box {
+    width: 320px;
+
+    padding: 10px 12px;
+
+    border-radius: 14px;
 
     background:
-        rgba(255, 255, 255, 0.06);
+        rgba(255, 255, 255, 0.055);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
+
+    text-align: center;
+}
+
+
+/* Music heading */
+
+.music-title {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 3px;
+
+    color: #ffffff;
+}
+
+
+/* Small description */
+
+.music-subtitle {
+    font-size: 9px;
+
+    color: #aebbd0;
+
+    margin-bottom: 7px;
+}
+
+
+/* Hide default ugly file input */
+
+#musicFile {
+    display: none;
+}
+
+
+/* Custom choose button */
+
+.music-box label {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #7c3aed);
 
     color: white;
 
-    border:
-        1px solid rgba(255, 255, 255, 0.12);
+    font-size: 10px;
 
-    border-radius: 50px;
-
-    padding: 10px 18px;
+    font-weight: 600;
 
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
-.hero {
+.music-box label:hover {
+    transform: translateY(-1px);
 
+    box-shadow:
+        0 5px 15px rgba(96,
+            165,
+            250,
+            0.25);
+}
+
+
+/* Music controls */
+
+.music-controls {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 7px;
+}
+
+.music-controls button {
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    color: white;
+
+    padding: 5px 9px;
+
+    border-radius: 7px;
+
+    font-size: 9px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.music-controls button:hover {
+    background:
+        rgba(255, 255, 255, 0.14);
+
+    transform: translateY(-1px);
+}
+
+
+/* Play button */
+
+#musicButton {
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #7c3aed) !important;
+
+    border: none !important;
+
+    font-weight: 600;
+}
+
+
+/* Song name */
+
+#musicName {
+    margin-top: 7px;
+
+    padding: 5px 8px;
+
+    border-radius: 7px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    color: #b8c5d8;
+
+    font-size: 9px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
     min-height: 500px;
 
     display: flex;
 
     align-items: center;
 
-    justify-content:
-        space-between;
+    justify-content: space-between;
 
     gap: 40px;
 
@@ -284,15 +420,11 @@ nav {
     overflow: hidden;
 }
 
-
 .hero-content {
-
     max-width: 650px;
 }
 
-
 .hero h2 {
-
     font-size:
         clamp(45px, 8vw, 85px);
 
@@ -301,11 +433,9 @@ nav {
     margin-bottom: 25px;
 }
 
-
 .hero h2 span,
 .message h2 span,
 footer span {
-
     background:
         linear-gradient(90deg,
             #60a5fa,
@@ -316,9 +446,7 @@ footer span {
     color: transparent;
 }
 
-
 .hero p {
-
     color: #cbd5e1;
 
     font-size: 18px;
@@ -328,9 +456,7 @@ footer span {
     margin-bottom: 30px;
 }
 
-
 .hero-heart {
-
     font-size: 170px;
 
     animation:
@@ -340,9 +466,7 @@ footer span {
         drop-shadow(0 0 40px rgba(96, 165, 250, .5));
 }
 
-
 .main-button {
-
     border: none;
 
     padding: 16px 25px;
@@ -363,9 +487,7 @@ footer span {
     transition: .3s;
 }
 
-
 .main-button:hover {
-
     transform:
         translateY(-3px);
 
@@ -373,27 +495,27 @@ footer span {
         0 15px 35px rgba(124, 58, 237, .3);
 }
 
-.message {
 
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message {
     text-align: center;
 
     padding-top: 90px;
 }
 
-
 .message h2,
 .photos h2,
 .reasons h2 {
-
     font-size:
         clamp(30px, 5vw, 45px);
 
     margin-bottom: 30px;
 }
 
-
 .letter {
-
     max-width: 800px;
 
     margin: auto;
@@ -411,9 +533,7 @@ footer span {
     text-align: left;
 }
 
-
 .letter p {
-
     color: #dbeafe;
 
     line-height: 1.9;
@@ -423,26 +543,25 @@ footer span {
     margin-bottom: 18px;
 }
 
-
 .final-message {
-
     font-weight: bold;
 
     color: white !important;
 }
 
-.photos {
 
+/* =========================================
+   PHOTOS
+========================================= */
+
+.photos {
     padding-top: 100px;
 
     text-align: center;
 }
 
-
 .photo-grid {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(4, 1fr);
@@ -450,9 +569,7 @@ footer span {
     gap: 15px;
 }
 
-
 .photo-card {
-
     min-height: 280px;
 
     border-radius: 22px;
@@ -470,17 +587,12 @@ footer span {
     position: relative;
 }
 
-
 .photo-input {
-
     display: none;
 }
 
-
 .photo {
-
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
@@ -492,15 +604,11 @@ footer span {
     display: none;
 }
 
-
 .photo.show {
-
     display: block;
 }
 
-
 .photo-placeholder {
-
     height: 100%;
 
     min-height: 280px;
@@ -522,33 +630,30 @@ footer span {
     transition: .3s;
 }
 
-
 .photo-placeholder span {
-
     font-size: 13px;
 }
 
-
 .photo-card:hover .photo-placeholder {
-
     background:
         rgba(59, 130, 246, .1);
 
     color: #bfdbfe;
 }
 
-.reasons {
 
+/* =========================================
+   REASONS
+========================================= */
+
+.reasons {
     text-align: center;
 
     padding-top: 100px;
 }
 
-
 .reason-grid {
-
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
@@ -556,9 +661,7 @@ footer span {
     gap: 20px;
 }
 
-
 .reason {
-
     padding: 30px;
 
     border-radius: 22px;
@@ -572,17 +675,13 @@ footer span {
     font-size: 35px;
 }
 
-
 .reason h3 {
-
     font-size: 20px;
 
     margin: 15px 0 10px;
 }
 
-
 .reason p {
-
     color: #94a3b8;
 
     font-size: 14px;
@@ -590,8 +689,12 @@ footer span {
     line-height: 1.7;
 }
 
-footer {
 
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
     text-align: center;
 
     margin-top: 100px;
@@ -602,31 +705,29 @@ footer {
         1px solid rgba(255, 255, 255, .1);
 }
 
-
 .footer-heart {
-
     font-size: 55px;
 
     animation:
         heartbeat 1.2s infinite;
 }
 
-
 footer h2 {
-
     margin: 15px 0;
 
     font-size: 25px;
 }
 
-
 footer p {
-
     color: #64748b;
 }
 
-.floating-heart {
 
+/* =========================================
+   FLOATING HEARTS
+========================================= */
+
+.floating-heart {
     position: fixed;
 
     bottom: -50px;
@@ -639,10 +740,14 @@ footer p {
         rise linear forwards;
 }
 
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
 @keyframes fadeUp {
 
     from {
-
         opacity: 0;
 
         transform:
@@ -650,7 +755,6 @@ footer p {
     }
 
     to {
-
         opacity: 1;
 
         transform:
@@ -663,13 +767,11 @@ footer p {
 
     0%,
     100% {
-
         transform:
             translateY(0) rotate(-5deg);
     }
 
     50% {
-
         transform:
             translateY(-15px) rotate(5deg);
     }
@@ -680,19 +782,16 @@ footer p {
 
     0%,
     100% {
-
         transform:
             scale(1);
     }
 
     20% {
-
         transform:
             scale(1.2);
     }
 
     40% {
-
         transform:
             scale(1);
     }
@@ -702,7 +801,6 @@ footer p {
 @keyframes rise {
 
     to {
-
         transform:
             translateY(-120vh) rotate(360deg);
 
@@ -710,107 +808,191 @@ footer p {
     }
 }
 
+
+/* =========================================
+   FROM AAKASH INDANI
+========================================= */
+
+.from-label {
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    opacity: 0.9;
+
+    margin-bottom: 10px;
+
+    animation:
+        fadeDown 1s ease;
+}
+
+.sender-name {
+    font-size:
+        clamp(32px, 6vw, 58px);
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    background:
+        linear-gradient(90deg,
+            #ffffff,
+            #8ed8ff,
+            #ffffff);
+
+    background-size:
+        200% auto;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        senderGlow 3s linear infinite;
+
+    text-shadow:
+        0 0 25px rgba(120, 210, 255, 0.35);
+
+    margin-bottom: 30px;
+}
+
+
+@keyframes senderGlow {
+
+    0% {
+        background-position:
+            0% center;
+    }
+
+    100% {
+        background-position:
+            200% center;
+    }
+}
+
+
+@keyframes fadeDown {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(-15px);
+    }
+
+    to {
+        opacity: 0.9;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
 @media(max-width: 750px) {
 
-    .hero {
+    nav {
+        align-items: flex-start;
+    }
 
+    .music-box {
+        width: 285px;
+    }
+
+    .hero {
         padding: 45px 25px;
 
         text-align: center;
 
-        flex-direction:
-            column;
+        flex-direction: column;
     }
 
-
     .hero-heart {
-
         font-size: 110px;
     }
 
-
     .photo-grid {
-
         grid-template-columns:
             repeat(2, 1fr);
     }
 
-
     .reason-grid {
-
         grid-template-columns:
             1fr;
     }
-
 }
 
 
+/* =========================================
+   MOBILE
+========================================= */
+
 @media(max-width: 480px) {
 
-    .intro-card {
+    nav {
+        flex-direction: column;
 
+        align-items: center;
+
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    .music-box {
+        width: 260px;
+
+        padding: 9px 10px;
+    }
+
+    .music-title {
+        font-size: 13px;
+    }
+
+    .music-subtitle {
+        font-size: 8px;
+    }
+
+    .music-box label {
+        padding: 5px 10px;
+
+        font-size: 9px;
+    }
+
+    .music-controls button {
+        padding: 4px 7px;
+
+        font-size: 8px;
+    }
+
+    #musicName {
+        font-size: 8px;
+    }
+
+    .intro-card {
         padding:
             40px 20px;
     }
 
-
     .hero h2 {
-
         font-size: 50px;
     }
 
-
     .photo-card {
-
         min-height: 190px;
     }
-
 
     .photo-placeholder {
-
         min-height: 190px;
     }
-
-}
-.from-label {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  opacity: 0.9;
-  margin-bottom: 10px;
-  animation: fadeDown 1s ease;
-}
-
-.sender-name {
-  font-size: clamp(32px, 6vw, 58px);
-  font-weight: 900;
-  letter-spacing: 2px;
-  background: linear-gradient(90deg, #ffffff, #8ed8ff, #ffffff);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: senderGlow 3s linear infinite;
-  text-shadow: 0 0 25px rgba(120, 210, 255, 0.35);
-  margin-bottom: 30px;
-}
-
-@keyframes senderGlow {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 0.9;
-    transform: translateY(0);
-  }
 }
