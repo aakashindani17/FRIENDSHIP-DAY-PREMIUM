@@ -1,3 +1,10 @@
+/* =========================================
+   FRIENDSHIP DAY PREMIUM WEBSITE
+   Updated version with saved photos
+========================================= */
+
+
+/* ================= ELEMENTS ================= */
 
 const intro =
     document.getElementById("intro");
@@ -22,6 +29,10 @@ const musicButton =
 
 const music =
     document.getElementById("music");
+
+
+/* ================= START SURPRISE ================= */
+
 startButton.addEventListener(
     "click",
     startSurprise
@@ -30,7 +41,7 @@ startButton.addEventListener(
 
 friendNameInput.addEventListener(
     "keydown",
-    function (event) {
+    function(event) {
 
         if (event.key === "Enter") {
 
@@ -50,7 +61,7 @@ function startSurprise() {
     if (name === "") {
 
         alert(
-            "Please enter your friend's name 💙"
+            "Please enter your friend's name ❤️"
         );
 
         friendNameInput.focus();
@@ -58,6 +69,12 @@ function startSurprise() {
         return;
 
     }
+
+
+    /*
+       Put name everywhere
+    */
+
     document.getElementById(
         "friendName1"
     ).textContent = name;
@@ -76,10 +93,50 @@ function startSurprise() {
     document.getElementById(
         "friendName4"
     ).textContent = name;
+
+
+    /*
+       Save friend's name
+    */
+
+    localStorage.setItem(
+        "friendshipFriendName",
+        name
+    );
+
+
+    /*
+       Hide intro
+    */
+
     intro.classList.add("hidden");
+
+
+    /*
+       Show surprise
+    */
+
     surprise.classList.remove("hidden");
 
+
+    /*
+       Create hearts
+    */
+
     createHearts(40);
+
+
+    /*
+       Load saved photos
+    */
+
+    loadSavedPhotos();
+
+
+    /*
+       Scroll top
+    */
+
     window.scrollTo({
 
         top: 0,
@@ -90,9 +147,42 @@ function startSurprise() {
 
 }
 
+
+/* ================= LOAD SAVED NAME ================= */
+
+window.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const savedName =
+            localStorage.getItem(
+                "friendshipFriendName"
+            );
+
+
+        if (savedName) {
+
+            friendNameInput.value =
+                savedName;
+
+        }
+
+
+        /*
+           Load saved photos
+        */
+
+        loadSavedPhotos();
+
+    }
+);
+
+
+/* ================= MESSAGE ================= */
+
 messageButton.addEventListener(
     "click",
-    function () {
+    function() {
 
         message.classList.remove(
             "hidden"
@@ -100,14 +190,14 @@ messageButton.addEventListener(
 
 
         messageButton.innerHTML =
-            "💙 Message Opened";
+            "❤️ Message Opened";
 
 
         createHearts(25);
 
 
         setTimeout(
-            function () {
+            function() {
 
                 message.scrollIntoView({
 
@@ -123,6 +213,10 @@ messageButton.addEventListener(
 
     }
 );
+
+
+/* ================= HEARTS ================= */
+
 function createHeart() {
 
     const heart =
@@ -134,7 +228,7 @@ function createHeart() {
 
 
     const hearts = [
-        "💙",
+        "❤️",
         "🤍",
         "💜",
         "✨",
@@ -144,10 +238,10 @@ function createHeart() {
 
     heart.innerHTML =
         hearts[
-        Math.floor(
-            Math.random() *
-            hearts.length
-        )
+            Math.floor(
+                Math.random() *
+                hearts.length
+            )
         ];
 
 
@@ -171,7 +265,7 @@ function createHeart() {
 
 
     setTimeout(
-        function () {
+        function() {
 
             heart.remove();
 
@@ -180,6 +274,9 @@ function createHeart() {
     );
 
 }
+
+
+/* ================= CREATE MANY HEARTS ================= */
 
 function createHearts(number) {
 
@@ -198,10 +295,24 @@ function createHearts(number) {
 
 }
 
+
+/*
+   Continuous hearts
+*/
+
 setInterval(
     createHeart,
     1200
 );
+
+
+/* =====================================================
+   PHOTO SYSTEM
+   Photos are saved in browser Local Storage
+===================================================== */
+
+
+/* ================= PHOTO INPUTS ================= */
 
 const photoInputs =
     document.querySelectorAll(
@@ -209,12 +320,14 @@ const photoInputs =
     );
 
 
+/* ================= PHOTO UPLOAD ================= */
+
 photoInputs.forEach(
-    function (input) {
+    function(input, index) {
 
         input.addEventListener(
             "change",
-            function (event) {
+            function(event) {
 
                 const file =
                     event.target.files[0];
@@ -227,6 +340,10 @@ photoInputs.forEach(
                 }
 
 
+                /*
+                   Check image
+                */
+
                 if (
                     !file.type.startsWith(
                         "image/"
@@ -235,6 +352,25 @@ photoInputs.forEach(
 
                     alert(
                         "Please select an image."
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                   Maximum file size
+                   5 MB
+                */
+
+                if (
+                    file.size >
+                    5 * 1024 * 1024
+                ) {
+
+                    alert(
+                        "Please select a photo smaller than 5 MB."
                     );
 
                     return;
@@ -260,15 +396,27 @@ photoInputs.forEach(
                     );
 
 
+                /*
+                   Read image
+                */
+
                 const reader =
                     new FileReader();
 
 
                 reader.onload =
-                    function (e) {
+                    function(e) {
+
+                        const imageData =
+                            e.target.result;
+
+
+                        /*
+                           Show image
+                        */
 
                         image.src =
-                            e.target.result;
+                            imageData;
 
 
                         image.classList.add(
@@ -278,6 +426,23 @@ photoInputs.forEach(
 
                         placeholder.style.display =
                             "none";
+
+
+                        /*
+                           SAVE PHOTO
+                        */
+
+                        savePhoto(
+                            index,
+                            imageData
+                        );
+
+
+                        /*
+                           Success message
+                        */
+
+                        showPhotoMessage();
 
                     };
 
@@ -292,20 +457,227 @@ photoInputs.forEach(
     }
 );
 
-let musicPlaying = false;
+
+/* ================= SAVE PHOTO ================= */
+
+function savePhoto(
+    index,
+    imageData
+) {
+
+    try {
+
+        localStorage.setItem(
+            "friendshipPhoto_" + index,
+            imageData
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Photo could not be saved:",
+            error
+        );
+
+
+        alert(
+            "Photo save nahi ho paayi. Please smaller photo try karein."
+        );
+
+    }
+
+}
+
+
+/* ================= LOAD SAVED PHOTOS ================= */
+
+function loadSavedPhotos() {
+
+    photoInputs.forEach(
+        function(input, index) {
+
+            const savedPhoto =
+                localStorage.getItem(
+                    "friendshipPhoto_" + index
+                );
+
+
+            if (!savedPhoto) {
+
+                return;
+
+            }
+
+
+            const card =
+                input.closest(
+                    ".photo-card"
+                );
+
+
+            const image =
+                card.querySelector(
+                    ".photo"
+                );
+
+
+            const placeholder =
+                card.querySelector(
+                    ".photo-placeholder"
+                );
+
+
+            /*
+               Restore photo
+            */
+
+            image.src =
+                savedPhoto;
+
+
+            image.classList.add(
+                "show"
+            );
+
+
+            placeholder.style.display =
+                "none";
+
+        }
+    );
+
+}
+
+
+/* ================= PHOTO MESSAGE ================= */
+
+function showPhotoMessage() {
+
+    let messageBox =
+        document.getElementById(
+            "photoSavedMessage"
+        );
+
+
+    /*
+       Create message if it doesn't exist
+    */
+
+    if (!messageBox) {
+
+        messageBox =
+            document.createElement(
+                "div"
+            );
+
+
+        messageBox.id =
+            "photoSavedMessage";
+
+
+        messageBox.style.position =
+            "fixed";
+
+
+        messageBox.style.bottom =
+            "25px";
+
+
+        messageBox.style.left =
+            "50%";
+
+
+        messageBox.style.transform =
+            "translateX(-50%)";
+
+
+        messageBox.style.background =
+            "#111827";
+
+
+        messageBox.style.color =
+            "white";
+
+
+        messageBox.style.padding =
+            "12px 20px";
+
+
+        messageBox.style.borderRadius =
+            "50px";
+
+
+        messageBox.style.border =
+            "1px solid rgba(255,255,255,0.15)";
+
+
+        messageBox.style.zIndex =
+            "9999";
+
+
+        messageBox.style.fontSize =
+            "14px";
+
+
+        messageBox.style.boxShadow =
+            "0 10px 30px rgba(0,0,0,0.3)";
+
+
+        document.body.appendChild(
+            messageBox
+        );
+
+    }
+
+
+    messageBox.innerHTML =
+        "❤️ Photo saved! It will stay after reload.";
+
+
+    messageBox.style.display =
+        "block";
+
+
+    clearTimeout(
+        window.photoMessageTimer
+    );
+
+
+    window.photoMessageTimer =
+        setTimeout(
+            function() {
+
+                messageBox.style.display =
+                    "none";
+
+            },
+            3000
+        );
+
+}
+
+
+/* ================= MUSIC ================= */
+
+let musicPlaying =
+    false;
 
 
 musicButton.addEventListener(
     "click",
-    function () {
+    function() {
 
         if (!musicPlaying) {
 
             music.play()
                 .then(
-                    function () {
+                    function() {
 
-                        musicPlaying = true;
+                        musicPlaying =
+                            true;
+
 
                         musicButton.innerHTML =
                             "🔊 Music ON";
@@ -313,7 +685,7 @@ musicButton.addEventListener(
                     }
                 )
                 .catch(
-                    function () {
+                    function() {
 
                         alert(
                             "music.mp3 file same folder me rakho 🎵"
@@ -328,10 +700,13 @@ musicButton.addEventListener(
 
             music.pause();
 
-            musicPlaying = false;
+
+            musicPlaying =
+                false;
+
 
             musicButton.innerHTML =
-                "🔇 Music";
+                "🎵 Music";
 
         }
 
