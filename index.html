@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Friendship Day Surprise</title>
+
+    <link rel="stylesheet" href="friendship.css">
+</head>
+
+<body>
+
+    <div id="hearts"></div>
+    <section class="intro" id="intro">
+
+        <div class="intro-card">
+
+            <div class="main-heart">💙</div>
+
+            <p class="small-title">A LITTLE SURPRISE FOR YOU</p>
+
+            <h1>
+                Happy Friendship Day
+            </h1>
+
+            <p class="description">
+                Enter your best friend's name and unlock a special
+                surprise made just for them. ✨
+            </p>
+
+            <input type="text" id="friendName" placeholder="Enter Your Name..." maxlength="30">
+
+            <button id="startButton">
+                ✨ Open Surprise
+            </button>
+
+            <p class="bottom-text">
+                Made with 💙 and beautiful memories
+            </p>
+
+        </div>
+
+    </section>
+    <section class="surprise hidden" id="surprise">
+
+        <nav>
+
+            <div class="logo">
+                💙 Forever Friends
+            </div>
+
+            <button id="musicButton">
+                🎵 Music
+            </button>
+
+        </nav>
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="small-title">
+                    HAPPY FRIENDSHIP DAY
+                </p>
+
+                <h2>
+                    Hey,
+                    <span id="friendName1">
+                        Friend
+                    </span>
+                    ! 💙
+                </h2>
+
+                <p>
+                    Some friendships are not just made...
+                    they become a beautiful part of our story.
+                </p>
+
+                <button class="main-button" id="messageButton">
+                    💌 Open My Message
+                </button>
+
+            </div>
+
+            <div class="hero-heart">
+                💙
+            </div>
+
+        </section>
+
+
+        <!-- ================= MESSAGE ================= -->
+
+        <section class="message hidden" id="message">
+
+            <p class="small-title">
+                A MESSAGE FOR YOU
+            </p>
+
+            <h2>
+                Dear
+                <span id="friendName2">
+                    Friend
+                </span>
+                🥹
+            </h2>
+
+            <div class="letter">
+
+                <p>
+                    Thank you for being the kind of friend
+                    who makes ordinary days feel special.
+                </p>
+
+                <p>
+                    For every laugh, every random conversation,
+                    every silly moment and every memory —
+                    I'm genuinely grateful for you.
+                </p>
+
+                <p>
+                    Life may change, places may change,
+                    and we may get busy...
+                    but I hope this friendship always
+                    has a special place in our hearts.
+                </p>
+
+                <p class="final-message">
+
+                    Happy Friendship Day,
+                    <span id="friendName3">
+                        Friend
+                    </span>
+                    ! 💙
+
+                </p>
+
+            </div>
+
+        </section>
+        <section class="photos">
+
+            <p class="small-title">
+                OUR MEMORIES
+            </p>
+
+            <h2>
+                Little moments,
+                big memories 📸
+            </h2>
+
+            <div class="photo-grid">
+                <label class="photo-card">
+
+                    <input type="file" accept="image/*" class="photo-input">
+
+                    <img class="photo" alt="Memory">
+
+                    <div class="photo-placeholder">
+
+                        📷
+
+                        <span>
+                            Add Photo
+                        </span>
+
+                    </div>
+
+                </label>
+                <label class="photo-card">
+
+                    <input type="file" accept="image/*" class="photo-input">
+
+                    <img class="photo" alt="Memory">
+
+                    <div class="photo-placeholder">
+
+                        🫶
+
+                        <span>
+                            Add Photo
+                        </span>
+
+                    </div>
+
+                </label>
+                <label class="photo-card">
+
+                    <input type="file" accept="image/*" class="photo-input">
+
+                    <img class="photo" alt="Memory">
+
+                    <div class="photo-placeholder">
+
+                        ✨
+
+                        <span>
+                            Add Photo
+                        </span>
+
+                    </div>
+
+                </label>
+                <label class="photo-card">
+
+                    <input type="file" accept="image/*" class="photo-input">
+
+                    <img class="photo" alt="Memory">
+
+                    <div class="photo-placeholder">
+
+                        💙
+
+                        <span>
+                            Add Photo
+                        </span>
+
+                    </div>
+
+                </label>
+
+            </div>
+
+        </section>
+        <section class="reasons">
+
+            <p class="small-title">
+                WHY YOU'RE SPECIAL
+            </p>
+
+            <h2>
+                Just a few reasons... 🌙
+            </h2>
+
+            <div class="reason-grid">
+
+                <div class="reason">
+                    😂
+                    <h3>
+                        You make me laugh
+                    </h3>
+
+                    <p>
+                        Even the most random moments
+                        become beautiful memories.
+                    </p>
+                </div>
+
+
+                <div class="reason">
+                    🤝
+                    <h3>
+                        You're always there
+                    </h3>
+
+                    <p>
+                        Your presence means more
+                        than you probably know.
+                    </p>
+                </div>
+
+
+                <div class="reason">
+                    🫶
+                    <h3>
+                        You're irreplaceable
+                    </h3>
+
+                    <p>
+                        Some friendships simply
+                        cannot be copied.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+        <footer>
+
+            <div class="footer-heart">
+                💙
+            </div>
+
+            <h2>
+
+                Forever grateful for you,
+                <span id="friendName4">
+                    Friend
+                </span>
+
+            </h2>
+
+            <p>
+                Made with love, laughter & memories ✨
+            </p>
+
+        </footer>
+
+    </section>
+
+
+    <!-- MUSIC -->
+
+    <audio id="music" loop>
+
+        <source src="music.mp3" type="audio/mpeg">
+
+    </audio>
+
+
+    <script src="friendship.js"></script>
+
+</body>
+
+</html>
